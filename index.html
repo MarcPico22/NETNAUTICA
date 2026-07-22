@@ -554,15 +554,52 @@
         window.addEventListener('resize', updateCarouselPosition);
         setTimeout(updateCarouselPosition, 100);
 
-        // Contact Form Interception
+        // Contact Form Interception using Web3Forms (for GitHub Pages static hosting)
         const contactForm = document.getElementById('contact-form');
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            const nombre = document.getElementById('nombre').value;
-            alert(`Gracias, ${nombre}. Tu solicitud de propuesta ha sido enviada al equipo de ingeniería de Netnautica. Nos pondremos en contacto contigo en menos de 24 horas.`);
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.textContent = 'Enviando...';
+            submitBtn.disabled = true;
             
-            contactForm.reset();
+            const nombre = document.getElementById('nombre').value;
+            const email = document.getElementById('email').value;
+            const telefono = document.getElementById('telefono').value;
+            const mensaje = document.getElementById('mensaje').value;
+            
+            const formData = new FormData();
+            // Paste your Web3Forms access key below
+            formData.append('access_key', 'YOUR_WEB3FORMS_ACCESS_KEY');
+            formData.append('name', nombre);
+            formData.append('email', email);
+            formData.append('phone', telefono);
+            formData.append('message', mensaje);
+            formData.append('subject', `Nueva consulta web de Netnautica: ${nombre}`);
+            formData.append('from_name', 'Netnautica Web');
+            
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(`Gracias, ${nombre}. Tu solicitud de propuesta ha sido enviada al equipo de ingeniería de Netnautica. Nos pondremos en contacto contigo en menos de 24 horas.`);
+                    contactForm.reset();
+                } else {
+                    alert('Hubo un problema al enviar tu mensaje. Por favor, inténtalo de nuevo o envíanos un correo directo a engineering@netnautica.com.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Hubo un error de conexión al enviar el formulario. Por favor, envíanos un correo directo a engineering@netnautica.com.');
+            })
+            .finally(() => {
+                submitBtn.textContent = originalBtnText;
+                submitBtn.disabled = false;
+            });
         });
     </script>
 </body>
