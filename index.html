@@ -457,7 +457,7 @@
     <!-- Interactive Logic (Configurator, cursor follow, scrolling and mobile menu) -->
     <script>
         // --- 1. Scroll Reveal Animation Logic ---
-        const revealElements = document.querySelectorAll('.reveal');
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
         const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
