@@ -1,0 +1,8 @@
+# Ignore large binaries
+tor-browser-windows-x86_64-portable-15.0.19.exe
+*.exe
+*.zip
+*.pptx
+*.msi
+*.dmg
+*.pkg
