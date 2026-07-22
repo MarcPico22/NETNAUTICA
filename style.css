@@ -131,50 +131,50 @@ body {
 /* ==========================================================================
    SCROLL REVEAL STYLES (Animations as you scroll)
    ========================================================================== */
-.reveal {
+.js-enabled .reveal {
     opacity: 0;
     transform: translateY(40px);
     transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform, opacity;
 }
 
-.reveal.active {
+.js-enabled .reveal.active {
     opacity: 1;
     transform: translateY(0);
 }
 
-.reveal-left {
+.js-enabled .reveal-left {
     opacity: 0;
     transform: translateX(-45px);
     transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform, opacity;
 }
 
-.reveal-left.active {
+.js-enabled .reveal-left.active {
     opacity: 1;
     transform: translateX(0);
 }
 
-.reveal-right {
+.js-enabled .reveal-right {
     opacity: 0;
     transform: translateX(45px);
     transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform, opacity;
 }
 
-.reveal-right.active {
+.js-enabled .reveal-right.active {
     opacity: 1;
     transform: translateX(0);
 }
 
-.reveal-scale {
+.js-enabled .reveal-scale {
     opacity: 0;
     transform: scale(0.96);
     transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform, opacity;
 }
 
-.reveal-scale.active {
+.js-enabled .reveal-scale.active {
     opacity: 1;
     transform: scale(1);
 }
@@ -850,6 +850,10 @@ h1, h2, h3, h4, h5, h6 {
 .partner-logo:hover {
     opacity: 0.95;
     transform: translateY(-2px);
+}
+
+.partner-logo:hover img {
+    filter: none;
 }
 
 .partner-logo img {
