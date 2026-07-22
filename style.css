@@ -129,43 +129,54 @@ body {
 }
 
 /* ==========================================================================
-   CUSTOM CURSOR (Desktops only)
+   SCROLL REVEAL STYLES (Animations as you scroll)
    ========================================================================== */
-.custom-cursor {
-    width: 6px;
-    height: 6px;
-    background-color: var(--accent);
-    border-radius: 50%;
-    position: fixed;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 9999;
-    transition: width 0.2s, height 0.2s, background-color 0.2s;
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
 }
 
-.custom-cursor-follower {
-    width: 30px;
-    height: 30px;
-    border: 1px solid rgba(0, 240, 255, 0.4);
-    border-radius: 50%;
-    position: fixed;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 9998;
-    transition: transform 0.08s cubic-bezier(0.25, 1, 0.5, 1), width 0.3s, height 0.3s, border-color 0.3s;
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* Cursor states on hover */
-body.hovered-interactive .custom-cursor {
-    width: 10px;
-    height: 10px;
-    background-color: var(--accent-gold);
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-45px);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
 }
-body.hovered-interactive .custom-cursor-follower {
-    width: 50px;
-    height: 50px;
-    border-color: var(--accent-gold);
-    background-color: rgba(197, 168, 128, 0.05);
+
+.reveal-left.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(45px);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+}
+
+.reveal-right.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reveal-scale {
+    opacity: 0;
+    transform: scale(0.96);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+}
+
+.reveal-scale.active {
+    opacity: 1;
+    transform: scale(1);
 }
 
 /* ==========================================================================
@@ -1492,9 +1503,6 @@ textarea.form-control {
         padding: 2rem;
     }
     
-    .custom-cursor, .custom-cursor-follower {
-        display: none; /* Disable cursor follow on touch devices */
-    }
 }
 
 @media (max-width: 480px) {
